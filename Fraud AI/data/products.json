@@ -1,0 +1,302 @@
+[
+  {
+    "id": "p001",
+    "name": "Everyday Cotton T-Shirt",
+    "category": "Fashion",
+    "current_price": 349,
+    "original_price": 399,
+    "price_history": [399, 379, 359, 349],
+    "seller": {
+      "name": "ModaLine Official",
+      "rating": 4.7,
+      "account_age_days": 1460,
+      "verified": true,
+      "return_rate": 0.04
+    },
+    "reviews": [
+      {
+        "rating": 5,
+        "text": "Soft fabric, correct size, and the color matches the photos.",
+        "date": "2026-05-02"
+      },
+      {
+        "rating": 4,
+        "text": "Good basic shirt. It kept its shape after two washes.",
+        "date": "2026-05-05"
+      },
+      {
+        "rating": 5,
+        "text": "Packaging was simple but clean. The product feels reliable for daily use.",
+        "date": "2026-05-09"
+      }
+    ],
+    "product_description": "Regular fit cotton t-shirt with breathable fabric and reinforced stitching.",
+    "claimed_features": ["100% cotton", "regular fit", "machine washable"],
+    "expected_scenario": "low_risk"
+  },
+  {
+    "id": "p002",
+    "name": "Wireless Earbuds Pro X",
+    "category": "Electronics",
+    "current_price": 799,
+    "original_price": 1999,
+    "price_history": [1899, 1799, 799],
+    "seller": {
+      "name": "TechNova Store",
+      "rating": 3.4,
+      "account_age_days": 180,
+      "verified": true,
+      "return_rate": 0.12
+    },
+    "reviews": [
+      {
+        "rating": 5,
+        "text": "Amazing product, very good quality, fast delivery. I recommend it to everyone.",
+        "date": "2026-05-10"
+      },
+      {
+        "rating": 5,
+        "text": "Very good product, amazing quality, fast shipping. I recommend it to everyone.",
+        "date": "2026-05-10"
+      },
+      {
+        "rating": 5,
+        "text": "Amazing quality, very good product, fast delivery. Definitely recommended.",
+        "date": "2026-05-10"
+      },
+      {
+        "rating": 2,
+        "text": "The sound is average and the battery lasted less than advertised.",
+        "date": "2026-05-11"
+      }
+    ],
+    "product_description": "Premium wireless earbuds with active noise cancellation and long battery life.",
+    "claimed_features": ["noise cancellation", "24h battery", "water resistant"],
+    "expected_scenario": "fake_review"
+  },
+  {
+    "id": "p003",
+    "name": "Smart Air Fryer 6L",
+    "category": "Home Appliances",
+    "current_price": 1299,
+    "original_price": 4999,
+    "price_history": [1599, 1699, 1649, 4999, 1299],
+    "seller": {
+      "name": "HomePlus Market",
+      "rating": 4.4,
+      "account_age_days": 920,
+      "verified": true,
+      "return_rate": 0.07
+    },
+    "reviews": [
+      {
+        "rating": 4,
+        "text": "Cooks fries evenly and the basket is easy to clean.",
+        "date": "2026-04-22"
+      },
+      {
+        "rating": 5,
+        "text": "Capacity is enough for a small family. No strange smell after first use.",
+        "date": "2026-04-30"
+      },
+      {
+        "rating": 4,
+        "text": "Works well, but the display buttons could be brighter.",
+        "date": "2026-05-06"
+      }
+    ],
+    "product_description": "Six liter digital air fryer with preset cooking modes and removable nonstick basket.",
+    "claimed_features": ["6L capacity", "digital presets", "nonstick basket"],
+    "expected_scenario": "fake_discount"
+  },
+  {
+    "id": "p004",
+    "name": "Luxury Leather Wallet",
+    "category": "Accessories",
+    "current_price": 599,
+    "original_price": 899,
+    "price_history": [899, 849, 699, 599],
+    "seller": {
+      "name": "QuickDeal Bazaar",
+      "rating": 2.1,
+      "account_age_days": 9,
+      "verified": false,
+      "return_rate": 0.42
+    },
+    "reviews": [
+      {
+        "rating": 4,
+        "text": "The wallet looks nice, but I have not used it long enough to judge durability.",
+        "date": "2026-05-07"
+      },
+      {
+        "rating": 3,
+        "text": "Shipping was fast. The leather smell is strong and the box was damaged.",
+        "date": "2026-05-08"
+      },
+      {
+        "rating": 4,
+        "text": "Acceptable for the price, although the stitching is not perfect.",
+        "date": "2026-05-12"
+      }
+    ],
+    "product_description": "Compact wallet made from genuine leather with RFID protection.",
+    "claimed_features": ["genuine leather", "RFID protection", "gift box"],
+    "expected_scenario": "suspicious_seller"
+  },
+  {
+    "id": "p005",
+    "name": "Waterproof Hiking Jacket",
+    "category": "Outdoor",
+    "current_price": 1199,
+    "original_price": 1599,
+    "price_history": [1599, 1499, 1299, 1199],
+    "seller": {
+      "name": "TrailMax Outdoor",
+      "rating": 4.1,
+      "account_age_days": 640,
+      "verified": true,
+      "return_rate": 0.11
+    },
+    "reviews": [
+      {
+        "rating": 2,
+        "text": "It got wet inside after ten minutes of rain. The hood is also too small.",
+        "date": "2026-05-03"
+      },
+      {
+        "rating": 3,
+        "text": "Comfortable fit, but it is more like a windbreaker than a waterproof jacket.",
+        "date": "2026-05-04"
+      },
+      {
+        "rating": 2,
+        "text": "The zipper is fine, but water passed through the shoulder seams.",
+        "date": "2026-05-09"
+      }
+    ],
+    "product_description": "Fully waterproof hiking jacket with sealed seams and storm hood for heavy rain.",
+    "claimed_features": ["fully waterproof", "sealed seams", "storm hood"],
+    "expected_scenario": "product_inconsistency"
+  },
+  {
+    "id": "p006",
+    "name": "Flagship Phone 15 Ultra Replica",
+    "category": "Electronics",
+    "current_price": 6999,
+    "original_price": 42999,
+    "price_history": [40999, 39999, 42999, 6999],
+    "seller": {
+      "name": "BestMobile Outlet",
+      "rating": 1.9,
+      "account_age_days": 5,
+      "verified": false,
+      "return_rate": 0.56
+    },
+    "reviews": [
+      {
+        "rating": 5,
+        "text": "Original phone, amazing product, very good quality, fast delivery.",
+        "date": "2026-05-12"
+      },
+      {
+        "rating": 5,
+        "text": "Amazing original phone, very good quality, fast shipping.",
+        "date": "2026-05-12"
+      },
+      {
+        "rating": 1,
+        "text": "The IMEI could not be verified and the camera quality is nothing like the description.",
+        "date": "2026-05-13"
+      },
+      {
+        "rating": 1,
+        "text": "Box had no official warranty card. The charger and software looked suspicious.",
+        "date": "2026-05-13"
+      }
+    ],
+    "product_description": "Brand new flagship smartphone with official warranty, authentic serial number, and pro camera system.",
+    "claimed_features": ["official warranty", "authentic serial number", "pro camera"],
+    "expected_scenario": "very_high_risk"
+  },
+  {
+    "id": "p007",
+    "name": "Robot Vacuum Lite",
+    "category": "Home Appliances",
+    "current_price": 4499,
+    "original_price": 5999,
+    "price_history": [5999, 5699, 5299, 4499],
+    "seller": {
+      "name": "CleanTech Store",
+      "rating": 3.8,
+      "account_age_days": 210,
+      "verified": true,
+      "return_rate": 0.18
+    },
+    "reviews": [
+      {
+        "rating": 5,
+        "text": "Cleans dust well on hard floors and returns to the dock most of the time.",
+        "date": "2026-04-28"
+      },
+      {
+        "rating": 3,
+        "text": "Navigation is sometimes confused around chair legs, but suction is good.",
+        "date": "2026-05-01"
+      },
+      {
+        "rating": 4,
+        "text": "Battery is enough for my apartment. The app setup took a few tries.",
+        "date": "2026-05-06"
+      },
+      {
+        "rating": 2,
+        "text": "It missed corners and the mop feature is very basic.",
+        "date": "2026-05-10"
+      }
+    ],
+    "product_description": "Entry level robot vacuum with smart mapping, auto dock return, and light mop support.",
+    "claimed_features": ["smart mapping", "auto dock return", "light mop"],
+    "expected_scenario": "medium_risk"
+  },
+  {
+    "id": "p008",
+    "name": "Noise Cancelling Headphones S2",
+    "category": "Electronics",
+    "current_price": 1899,
+    "original_price": 2499,
+    "price_history": [2499, 2299, 2099, 1899],
+    "seller": {
+      "name": "AudioCenter",
+      "rating": 3.6,
+      "account_age_days": 95,
+      "verified": true,
+      "return_rate": 0.16
+    },
+    "reviews": [
+      {
+        "rating": 5,
+        "text": "Comfortable headphones with strong bass. Delivery was fast.",
+        "date": "2026-05-04"
+      },
+      {
+        "rating": 5,
+        "text": "Comfortable headset, strong bass, and fast delivery.",
+        "date": "2026-05-04"
+      },
+      {
+        "rating": 3,
+        "text": "Noise cancelling works indoors but struggles on the bus.",
+        "date": "2026-05-09"
+      },
+      {
+        "rating": 4,
+        "text": "Good value when discounted. The case feels cheaper than expected.",
+        "date": "2026-05-11"
+      }
+    ],
+    "product_description": "Wireless over-ear headphones with hybrid noise cancellation and foldable carry case.",
+    "claimed_features": ["hybrid noise cancellation", "foldable case", "deep bass"],
+    "expected_scenario": "borderline"
+  }
+]
