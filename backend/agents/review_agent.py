@@ -45,6 +45,12 @@ def analyze_review_risk(product: Product) -> AgentOutput:
         reason_codes.append("GENERIC_SHORT_REVIEWS")
         evidence.append("Yorumlarda tekrar eden genel olumlu ifadeler bulundu.")
 
+    five_star_count = sum(1 for review in reviews if review.rating == 5)
+    if len(reviews) > 0 and (five_star_count / len(reviews)) > 0.8:
+        risk += 20
+        reason_codes.append("HIGH_FIVE_STAR_RATIO")
+        evidence.append("5 yildizli yorumlarin orani supheli derecede yuksek.")
+
     return AgentOutput(
         agent_name="Review Risk Agent",
         risk_score=min(risk, 100),

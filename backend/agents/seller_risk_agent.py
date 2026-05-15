@@ -16,8 +16,8 @@ def analyze_seller_risk(product: Product) -> AgentOutput:
 
     if seller.rating is None:
         missing_fields.append("seller.rating")
-    elif seller.rating < 3:
-        risk += 30
+    elif seller.rating < 3.5:
+        risk += 25
         reason_codes.append("LOW_SELLER_RATING")
         evidence.append("Satici puani dusuk gorunuyor.")
 
@@ -31,7 +31,7 @@ def analyze_seller_risk(product: Product) -> AgentOutput:
     if seller.account_age_days is None:
         missing_fields.append("seller_account_age")
     elif seller.account_age_days < 30:
-        risk += 25
+        risk += 30
         reason_codes.append("NEW_SELLER")
         evidence.append("Satici hesabi cok yeni.")
 

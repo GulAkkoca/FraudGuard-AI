@@ -14,7 +14,7 @@ def analyze_price_risk(product: Product) -> AgentOutput:
         discount = calculate_discount_percentage(product.current_price, product.original_price)
 
     if discount is not None and discount >= 50:
-        risk += 35
+        risk += 25
         reason_codes.append("EXCESSIVE_DISCOUNT")
         evidence.append("Urunde yuksek indirim orani tespit edildi.")
 
@@ -24,10 +24,16 @@ def analyze_price_risk(product: Product) -> AgentOutput:
         evidence.append("Fiyat gecmisi bulunamadigi icin indirim guveni sinirli.")
     else:
         historical_average = average_price([entry.price for entry in product.price_history])
-        if product.original_price and historical_average and product.original_price > historical_average * 1.6:
-            risk += 35
-            reason_codes.append("INFLATED_ORIGINAL_PRICE")
-            evidence.append("Eski fiyat, gecmis fiyat ortalamasina gore yuksek gorunuyor.")
+        if historical_average:
+            if product.original_price and product.original_price > historical_average * 1.6:
+                risk += 35
+                reason_codes.append("INFLATED_ORIGINAL_PRICE")
+                evidence.append("Eski fiyat, gecmis fiyat ortalamasina gore yuksek gorunuyor.")
+            
+            if discount is not None and discount >= 50 and (historical_average * 0.9 <= product.current_price <= historical_average * 1.1):
+                risk += 25
+                reason_codes.append("FAKE_DISCOUNT_CURRENT_PRICE")
+                evidence.append("Guncel fiyat gecmis ortalamaya yakin olmasina ragmen yuksek indirim gosteriliyor.")
 
     return AgentOutput(
         agent_name="Price Anomaly Agent",
