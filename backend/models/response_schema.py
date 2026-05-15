@@ -11,7 +11,9 @@ class AnalyzeUrlRequest(BaseModel):
 class GeminiExplanation(BaseModel):
     summary: str
     user_friendly_explanation: str
+    key_concerns: list[str] = Field(default_factory=list)
     recommended_action: str
+    confidence: int | None = Field(default=None)
     gemini_risk: float | None = Field(default=None, ge=0, le=100)
 
 
