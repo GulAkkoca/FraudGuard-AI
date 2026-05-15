@@ -1,4 +1,7 @@
 from fastapi import FastAPI, HTTPException
+from dotenv import load_dotenv
+
+load_dotenv()
 
 from agents.consistency_agent import analyze_consistency_risk
 from agents.price_anomaly_agent import analyze_price_risk

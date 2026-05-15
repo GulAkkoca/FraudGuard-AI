@@ -49,7 +49,7 @@ Kanıtlar (Evidence): {evidence}
 """
 
     try:
-        model = genai.GenerativeModel('gemini-1.5-flash')
+        model = genai.GenerativeModel('gemini-flash-latest')
         response = model.generate_content(
             prompt,
             generation_config=genai.GenerationConfig(response_mime_type="application/json")
