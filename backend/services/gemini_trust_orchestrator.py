@@ -52,7 +52,8 @@ Kanıtlar (Evidence): {evidence}
         model = genai.GenerativeModel('gemini-flash-latest')
         response = model.generate_content(
             prompt,
-            generation_config=genai.GenerationConfig(response_mime_type="application/json")
+            generation_config=genai.GenerationConfig(response_mime_type="application/json"),
+            request_options={"timeout": 8},
         )
         data = json.loads(response.text)
         
