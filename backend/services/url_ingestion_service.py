@@ -19,13 +19,13 @@ class IngestionResult:
     extraction_status: str
 
 
-def ingest_url(url: str) -> IngestionResult:
+async def ingest_url(url: str) -> IngestionResult:
     _validate_url_or_demo_key(url)
     demo_product = _match_demo_link(url)
     if demo_product is not None:
         return IngestionResult(demo_product, "demo_mapping_used", "success")
 
-    live_product = extract_live_product(url)
+    live_product = await extract_live_product(url)
     if live_product is not None:
         return IngestionResult(live_product, "live_url", "success")
 
