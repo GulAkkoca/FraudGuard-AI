@@ -10,6 +10,16 @@ from models.response_schema import GeminiExplanation
 _last_call_time = 0.0
 GEMINI_MIN_INTERVAL = 1.0  # saniye — rate limit koruması
 
+def get_api_keys():
+    keys = []
+    if os.getenv("GEMINI_API_KEY"):
+        keys.append(os.getenv("GEMINI_API_KEY"))
+    for i in range(1, 10):
+        k = os.getenv(f"GEMINI_API_KEY_{i}")
+        if k:
+            keys.append(k)
+    return list(dict.fromkeys(keys))
+
 
 def build_trust_explanation(product: Product, agent_outputs: list[AgentOutput]) -> GeminiExplanation:
     global _last_call_time
@@ -17,11 +27,9 @@ def build_trust_explanation(product: Product, agent_outputs: list[AgentOutput]) 
     if elapsed < GEMINI_MIN_INTERVAL:
         time.sleep(GEMINI_MIN_INTERVAL - elapsed)
     _last_call_time = time.time()
-    api_key = os.getenv("GEMINI_API_KEY")
-    if not api_key:
+    api_keys = get_api_keys()
+    if not api_keys:
         return _fallback_explanation(product, [], 50.0)
-
-    genai.configure(api_key=api_key)
 
     from services.rule_engine import calculate_rule_risk
     rule_risk = calculate_rule_risk(agent_outputs)
@@ -89,26 +97,36 @@ HAM YORUM METİNLERİ ({len(review_samples)} yorum):
 {chr(10).join(review_samples) if review_samples else "Yorum bulunamadı."}
 """
 
-    try:
-        model = genai.GenerativeModel("gemini-2.0-flash")
-        response = model.generate_content(
-            prompt,
-            generation_config=genai.GenerationConfig(response_mime_type="application/json"),
-            request_options={"timeout": 12},
-        )
-        data = json.loads(response.text)
+    for api_key in api_keys:
+        try:
+            genai.configure(api_key=api_key)
+            model = genai.GenerativeModel("gemini-2.0-flash")
+            response = model.generate_content(
+                prompt,
+                generation_config=genai.GenerationConfig(response_mime_type="application/json"),
+                request_options={"timeout": 12},
+            )
+            data = json.loads(response.text)
 
-        return GeminiExplanation(
-            summary=data.get("summary", "Özet alınamadı."),
-            user_friendly_explanation=data.get("user_friendly_explanation", "Açıklama alınamadı."),
-            key_concerns=data.get("key_concerns", []),
-            recommended_action=data.get("recommended_action", "Dikkatli inceleyin."),
-            confidence=data.get("confidence"),
-            gemini_risk=data.get("gemini_risk"),
-        )
-    except Exception as e:
-        print(f"Gemini API Hatası: {e}")
-        return _fallback_explanation(product, agent_outputs, rule_risk)
+            return GeminiExplanation(
+                summary=data.get("summary", "Özet alınamadı."),
+                user_friendly_explanation=data.get("user_friendly_explanation", "Açıklama alınamadı."),
+                key_concerns=data.get("key_concerns", []),
+                recommended_action=data.get("recommended_action", "Dikkatli inceleyin."),
+                confidence=data.get("confidence"),
+                gemini_risk=data.get("gemini_risk"),
+            )
+        except Exception as e:
+            err_msg = str(e).lower()
+            if "429" in err_msg or "quota" in err_msg or "exhausted" in err_msg or "too many requests" in err_msg:
+                print(f"Gemini API Limit Hatası (Key değiştiriliyor...): {e}")
+                continue
+            else:
+                print(f"Gemini API Genel Hatası: {e}")
+                return _fallback_explanation(product, agent_outputs, rule_risk)
+
+    print("Tüm API Key'lerin limiti doldu!")
+    return _fallback_explanation(product, agent_outputs, rule_risk)
 
 
 def _fallback_explanation(product: Product | None = None, agent_outputs=None, rule_risk: float = 50.0) -> GeminiExplanation:
