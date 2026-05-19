@@ -1,3 +1,9 @@
+import sys
+import asyncio
+
+if sys.platform == "win32":
+    asyncio.set_event_loop_policy(asyncio.WindowsProactorEventLoopPolicy())
+
 from fastapi import FastAPI, HTTPException
 from dotenv import load_dotenv
 
@@ -13,8 +19,17 @@ from services.gemini_trust_orchestrator import build_trust_explanation
 from services.rule_engine import calculate_rule_risk
 from services.score_fusion import build_final_report
 from services.url_ingestion_service import ingest_url
+from fastapi.middleware.cors import CORSMiddleware
 
 app = FastAPI(title="FraudGuard AI Backend", version="1.0.0")
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=["*"],  # Geliştirme aşamasında her yerden gelen isteklere izin verir
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
 
 
 @app.get("/health")
@@ -23,8 +38,8 @@ def health() -> dict[str, str]:
 
 
 @app.post("/analyze-url", response_model=TrustReport)
-def analyze_url(payload: AnalyzeUrlRequest) -> TrustReport:
-    ingestion = ingest_url(payload.url)
+async def analyze_url(payload: AnalyzeUrlRequest) -> TrustReport:
+    ingestion = await ingest_url(payload.url)
     return _analyze_product(ingestion.product, ingestion.source, ingestion.extraction_status)
 
 
