@@ -393,25 +393,3 @@ Frontend production build icin:
 cd frontend
 npm run build
 ```
-
-## Juri Icin Teknik Deger
-
-FraudGuard AI'nin guclu yani, yalnizca generative AI cevabi uretmemesidir. Sistem once deterministic risk engine ile analiz yapar, sonra Gemini katmani bu karari kullanici dostu dile cevirir.
-
-Bu yaklasim su avantajlari saglar:
-
-- Karar mantigi aciklanabilir.
-- Her riskin kaniti gosterilebilir.
-- Eksik veri durumunda sistem seffaf davranir.
-- Agent bazli mimari gelistirmeye aciktir.
-- Demo ve canli URL akislari birlikte desteklenir.
-
-## Sunumda Kullanilabilecek Kisa Anlatim
-
-FraudGuard AI, urun linkinden coklu veri sinyali cikarip dort uzman agent ile risk analizi yapar. Deterministic skor motoru final Trust Score'u uretir; Gemini Trust Orchestrator ise bu karari kanitlariyla kullanici dostu bir rapora donusturur.
-
-## Notlar
-
-- `node_modules`, `venv`, `.env`, cache ve build ciktilari proje dokumantasyonuna dahil edilmemistir.
-- `backend/README.md` backend odakli kisa dokuman olarak korunur.
-- Bu kok README, tum projenin ana tanitim ve kurulum dokumanidir.
